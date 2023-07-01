@@ -1,0 +1,110 @@
+body {
+    /* overflow: hidden; */
+	background-image: url(../imgs/background.jpg);
+    background-size: inherit;
+    background-repeat: no-repeat;
+}
+
+/* main section */
+.main { 
+	/* position: absolute; */
+	width: 100%;
+	height: 1200px;
+    margin-top: 270px;
+	background-color: rgba(12, 124, 235, 0.525);
+	/* overflow: auto; */
+    display: flex;
+    flex-wrap: wrap;
+}
+.left {
+    width: 50%;
+    padding-top: 18%;
+}
+.right {
+    width: 50%;
+    padding-top: 8%;
+}
+.right .form h1 {
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(98, 98, 98);
+}
+form {
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.bookingform {
+    background-color: white;
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+    padding-top: 10px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+.bookingform form input {
+    width: 80%;
+    height: 35px;
+    display: block;
+    margin-bottom: 20px;
+}
+.bookingform form textarea {
+    width: 80%;
+    display: block;
+    margin-bottom: 20px;
+}
+form input[type="submit"] {
+    display: block;
+    width: 20%;
+    padding: 10px;
+    background-color: rgb(12, 124, 235);
+    font-size: 15px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: auto;
+}
+form input[type="submit"]:hover {
+    background-color: rgb(10, 106, 202);
+}
+.left h2 {
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    width: 80%;
+    margin-left: 80px;
+    margin-bottom: 30px;
+}
+.left p {
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    width: 80%;
+    margin-left: 80px;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+    border: 1px solid gainsboro;
+    border-radius: 15px;
+    font-size: 15px;
+    width: 80%;
+    display: block;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+
+.bookingLabel1 {
+    margin-left: -400px;
+}
+.bookingLabel2 {
+    margin-left: -350px;
+}
+.bookingLabel3 {
+    margin-left: -320px;
+}

@@ -1,0 +1,178 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+/* navbar */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f4f4f4;
+    padding: 10px;
+    color: #fff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+nav a img {
+    width: 100px; 
+    height: 80px;
+    margin-right: 10px;
+}
+nav ul {
+    list-style-type: none;
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #333;
+    color: #fff;
+}
+/* intro */
+.intro{
+    background-color: rgba(173, 212, 231, 0.692);
+    font-size: 25px;
+    padding: 30px;
+    width: 70%;
+    margin: auto;
+    margin-top: 40px;
+    text-align: center;
+    box-shadow: 20px 20px 50px rgba(76, 75, 75, 0.5);
+    border-radius: 15px;
+}
+/* cards */
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 60px;
+    }
+    
+    .staff {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        margin: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        /* width: calc(50% - 20px); */
+        /* max-width: 400px; */
+        flex-grow: 1;
+        box-sizing: border-box;
+    }
+    
+    .staff .img-wrap {
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+    
+    .staff .text {
+        padding-top: 20px;
+    }
+    
+    .staff h3 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    
+    .staff .position {
+        font-size: 16px;
+        color: #777;
+        margin-bottom: 20px;
+    }
+    
+    .staff .faded {
+        opacity: 0.7;
+    }
+    
+    .staff p {
+        margin-bottom: 20px;
+    }
+    
+    .staff ul.ftco-social {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 0;
+    }
+    
+    .staff ul.ftco-social li {
+        display: inline-block;
+        margin-right: 5px;
+    }
+    
+    .staff ul.ftco-social li a {
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #537eea;
+        text-align: center;
+        color: #fff;
+        line-height: 30px;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .staff ul.ftco-social li a:hover {
+        background-color: #fff;
+        color: #537eea;
+    }
+    .first{
+        background-image: url(https://images.theconversation.com/files/304957/original/file-20191203-66986-im7o5.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop);
+        background-size: cover;
+    }
+    .seconed{
+        background-image: url(https://www.eatthis.com/wp-content/uploads/sites/4/2022/02/doctor-male-mature.jpg?quality=82&strip=1);
+        background-size: cover;
+
+    }
+    .third{
+        background-image: url(https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg?w=2000);
+        background-size: cover;
+
+    }
+    .fourth{
+        background-image: url(https://www.shutterstock.com/image-photo/portrait-young-male-doctor-stethoscope-260nw-737470705.jpg);
+        background-size: cover;
+    }
+    /* Optional animation */
+    .fadeInUp {
+        animation: fadeInUp 1s;
+    }
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .fa-brands{
+        margin: 5px;
+    }
+    .row .card{
+        text-decoration: none;
+        color: black;
+    }

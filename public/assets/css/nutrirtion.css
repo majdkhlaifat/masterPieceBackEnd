@@ -1,0 +1,72 @@
+    .recipe-card {
+        background-color: #f8f8f8;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+    
+    .recipe-card img {
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+    
+    .recipe-title {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+    
+    .recipe-description {
+        color: #888;
+        margin-bottom: 10px;
+    }
+    
+    .recipe-link {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #537eea;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    
+    .nutrition-card {
+        background-color: #f8f8f8;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+    
+    .nutrition-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .nutrition-list {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    
+    .nutrition-list li {
+        margin-bottom: 5px;
+    }
+    
+    .nutrition-tip {
+        background-color: #f8f8f8;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+    
+    .tip-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .tip-description {
+        color: #888;
+        margin-bottom: 10px;
+    }
+        

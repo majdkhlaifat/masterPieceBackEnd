@@ -1,0 +1,80 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Color of the links BEFORE scroll */
+.navbar-scroll .nav-link,
+.navbar-scroll .navbar-toggler-icon,
+.navbar-scroll .navbar-brand {
+    color: #252222;
+}
+
+/* Color of the links AFTER scroll */
+.navbar-scrolled .nav-link,
+.navbar-scrolled .navbar-toggler-icon,
+.navbar-scrolled .navbar-brand {
+    color: #0a0a0a;
+}
+
+/* Color of the navbar AFTER scroll */
+.navbar-scroll,
+.navbar-scrolled {
+    background-color: #cbbcb1;
+}
+
+.mask-custom {
+    backdrop-filter: blur(5px);
+    background-color: rgba(251, 251, 251, 0.15);
+}
+
+.navbar-brand {
+    font-size: 1.75rem;
+    letter-spacing: 3px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f4f4f4;
+    /* padding: 10px; */
+    color: #fff;
+    z-index: 999; /* Add higher z-index to navbar */
+    margin-left: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+nav a img {
+    width: 100px; 
+    height: 80px;
+    margin-right: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    /* padding: 10px; */
+    text-align: left;
+}
+
+nav ul li {
+    display: inline-block;
+    /* margin-right: 10px; */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    /* padding: 5px; */
+}
+
+nav div ul li a:hover {
+    background-color: #333;
+    color: white;
+}
