@@ -64,4 +64,24 @@ class BookingController extends Controller
         $data->delete();
         return redirect()->back();
     }
+    public function showAppointment(){
+        $data = appointment::all();
+        return view('admin.showAppointment',compact('data'));
+    }
+    public function approved($id)
+    {
+        $data = appointment::find($id);
+        $data->status='approved';
+        $data->save();
+
+        return redirect()->back();
+    }
+    public function canceled($id)
+    {
+        $data = appointment::find($id);
+        $data->status='canceled';
+        $data->save();
+
+        return redirect()->back();
+    }
 }

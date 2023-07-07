@@ -31,7 +31,7 @@
                             <a class="nav-link" href="{{route('user.home')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('user.booking', ['id' => $appoint->id]) }})}}">Booking</a>
+                            <a class="nav-link" href="{{route('user.booking')}}">Booking</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="portal.html">Patient Portal</a>
@@ -57,10 +57,10 @@
         
                     </x-app-layout>
                     @else
-                    <div class="links">
+                    <!-- <div class="links">
                         <a href="{{ route('register') }}"><button type="button">Sign UP </button></a> or
                         <a href="{{ route('login') }}"><button type="button">Login </button></a>
-                    </div>
+                    </div> -->
                     @endauth
                     @endif
                     </ul>

@@ -17,7 +17,7 @@
             <td>{{$appoint->time}}</td>
             <td>{{$appoint->message}}</td>
             <td>{{$appoint->status}}</td>
-            <td><a class="btn btn-danger" href="{{url('cancel_appoint',$appoint->id)}}">Cancel</a></td>
+            <td><a class="btn btn-danger" href="{{ route('cancel_appoint', ['id' => $appoint->id]) }}">Cancel</a></td>
         </tr>
         @endforeach
     </table>
