@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('email')->unique();
+            $table->string('password');
             $table->string('phone')->nullable();
             $table->string('speciality')->nullable();
             $table->string('room')->nullable();
             $table->string('image')->nullable();
+            $table->foreignId('user_id')->constrained('users')->default(2)->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +30,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('doctors');
-    }
+        Schema::table('doctors', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+        });    }
 };

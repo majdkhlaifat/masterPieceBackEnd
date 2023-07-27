@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Doctor;
+use App\Models\User;
+use Illuminate\Support\Facades\View;
 
 class AdminController extends Controller
 {
@@ -11,10 +13,13 @@ class AdminController extends Controller
     {
         return view('admin.addDoctor');
     }
+   
     public function upload(Request $request)
 {
     $request->validate([
         'name' => 'required|max:255',
+        'email' => 'required|email|unique:doctors,email',
+        'password' => 'required|min:8',
         'phone' => 'required|numeric',
         'speciality' => 'required|not_in:--Select--',
         'room' => 'required|numeric',
@@ -26,29 +31,43 @@ class AdminController extends Controller
         $imagename = time().'.'.$image->getClientOriginalExtension();
         $image->move('doctorimage', $imagename);
 
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->phone = $request->phone;
+        $user->usertype = 2;
+
+        $user->save();
+
         $doctor = new Doctor;
+        $doctor->user_id = $user->id;
         $doctor->image = $imagename;
         $doctor->name = $request->name;
+        $doctor->email = $request->email;
+        $doctor->password = bcrypt($request->password);
         $doctor->phone = $request->phone;
         $doctor->speciality = $request->speciality;
         $doctor->room = $request->room;
 
         $doctor->save();
+
         return redirect()->back()->with('message', 'Doctor Added Successfully');
     } else {
         return redirect()->back()->withErrors(['file' => 'Invalid or missing file']);
     }
 }
+
     public function view()
     {
         $doctors = Doctor::all();
         return view('user.telemedicine', compact('doctors'));
     }
-    public function show()
-    {
-        $doctors = Doctor::all();
-        return view('user.booking', compact('doctors'));
-    }
+    // public function show()
+    // {
+    //     $doctors = Doctor::all();
+    //     return view('user.booking', compact('doctors'));
+    // }
     public function showDoctors()
     {
         $data = Doctor::all();
@@ -66,23 +85,35 @@ class AdminController extends Controller
         return view('admin.updateDoctor',compact('data'));
     }
     public function editDoctor(Request $request, $id)
-    {
-        $data = Doctor::find($id);
-        $data->name = $request->name;
-        $data->phone = $request->phone;
-        $data->speciality = $request->speciality;
-        $data->room = $request->room;
+{
+    $data = Doctor::find($id);
+    $data->name = $request->name;
+    $data->phone = $request->phone;
+    $data->speciality = $request->speciality;
+    $data->room = $request->room;
 
-        $image = $request->file;
-
-        if($image){
-        $imagename = time().'.'.$image->getClientOriginalExtension();
+    if ($request->hasFile('file') && $request->file('file')->isValid()) {
+        $image = $request->file('file');
+        $imagename = time() . '.' . $image->getClientOriginalExtension();
         $image->move('doctorimage', $imagename);
         $data->image = $imagename;
-        }
-        
-        $data->save();
-        return redirect()->back()->with('message', 'Doctor Information Updated Successfully');
-
     }
+
+    if ($request->filled('password')) {
+        $data->password = bcrypt($request->password);
+    }
+
+    $data->save();
+    return redirect()->back()->with('message', 'Doctor Information Updated Successfully');
+}
+public function countByUserType()
+{
+    $userTypeCounts = User::select('usertype', \DB::raw('COUNT(*) as count'))
+        ->groupBy('usertype')
+        ->pluck('count', 'usertype')
+        ->toArray();
+
+    return view('admin.body')->with('userTypeCounts', $userTypeCounts);
+}
+
 }

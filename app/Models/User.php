@@ -60,4 +60,23 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($user) {
+            $user->createToken('API Token');
+        });
+    }
+    public function doctor()
+{
+    return $this->hasOne(Doctor::class, 'user_id');
+}
+
+
+    public function patientNotices()
+    {
+        return $this->hasMany(PatientNotice::class, 'patient_id');
+    }
+
 }

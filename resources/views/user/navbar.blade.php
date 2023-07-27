@@ -11,13 +11,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&family=Satisfy&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/general.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/index.css') }}"> 
-   
+    <style>
+        .navbar-nav .nav-item:hover .nav-link {
+            background-color: transparent;
+        }
+    </style>
+
 </head>
 <body>
 <div class="text">
         <!-- Navbar -->
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light fixed-top mask-custom shadow-0">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top mask-custom shadow-0 ">
                 <div class="container">
                 <img src="{{ asset('assets/imgs/LogoMakr-0qlole.png') }}" alt="logo" width="100px" height="80px">
                 <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
@@ -28,26 +33,26 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('user.home')}}">Home</a>
+                            <a class="nav-link" href="{{url('/')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('user.booking')}}">Booking</a>
+                            <a class="nav-link" href="{{route('user.booking.create')}}">Booking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="portal.html">Patient Portal</a>
+                            <a class="nav-link" href="{{ route('user.patientPortal') }}">Patient Portal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="chatbot.html">Chatbot</a>
+                            <a class="nav-link" href="{{ route('user.chatbot') }}">Chatbot</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.weightManagement') }}">BMI Calculator</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('user.telemedicine')}}">Telemedicine Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="nutrition.html">Food and Nutrition</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="fitness.html">Fitness and Exercise</a>
-                        </li>
+                            <a class="nav-link" href="{{route('user.heart-age')}}">Heart Age Test</a>
+                        </li>                        
                     @if (Route::has('login'))
                     @auth
                     <li class="nav-item">

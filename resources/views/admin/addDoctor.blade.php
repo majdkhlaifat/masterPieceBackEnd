@@ -97,6 +97,22 @@
             </div>
 
             <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Write Doctor Email" value="{{ old('email') }}">
+              @error('email')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+              @error('password')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
+
+            <div class="form-group">
               <label for="phone">Phone Number:</label>
               <input type="text" class="form-control" id="phone" name="phone" placeholder="Write Doctor Number" value="{{ old('phone') }}">
               @error('phone')

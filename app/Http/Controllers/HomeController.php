@@ -10,25 +10,36 @@ class HomeController extends Controller
 {
     public function redirect()
     {
-        if(Auth::id())
-        {
-            if(Auth::user()->usertype=='0')
-            {
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            if ($user->usertype == '0') {
                 return view('user.home');
-            }
-            else
-            {
-                return view('admin.home');
+            } elseif ($user->usertype == '1') {
+                return view('admin.addDoctor');
+            } elseif ($user->usertype == '2') {
+                return redirect()->route('doctor.home');
             }
         }
 
-        else
-        {
-            return redirect()->back();
-        }
+        return redirect()->back();
     }
     public function index()
     {
         return view('user.home');
+    }
+    public function chatbot()
+    {
+        return view('user.chatbot');
+    }
+
+    public function heartAge()
+    {
+        return view('user.heart-age');
+    }
+
+    public function weightManagement()
+    {
+        return view('user.weightManagement');
     }
 }

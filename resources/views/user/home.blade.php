@@ -29,17 +29,18 @@
     <div class="Services">
         <h2>Our Services</h2>
         <div class="card-group">
+        <div class="card">
+    <a href="{{ route('user.booking.create') }}">
+        <div class="content">
+            <h3><i class="fa-regular fa-calendar-check fa-2xl" style="color: #537eea;"></i></h3>
+            <h3>Online Booking</h3>
+            <p>Need to make an appointment this week? Use HealthHub to find doctors near you who take your insurance. It’s simple, secure, and free.</p>
+        </div>
+    </a>
+</div>
+
             <div class="card">
-                <a href="{{ route('user.booking') }}">
-                    <div class="content">
-                        <h3><i class="fa-regular fa-calendar-check fa-2xl" style="color: #537eea;"></i></h3>
-                        <h3>Online Booking</h3>
-                        <p>Need to make an appointment this week? Use HealthHub to find doctors near you who take your insurance. It’s simple, secure, and free.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="card">
-                <a href="portal.html">
+                <a href="{{ route('user.patientPortal') }}">
                     <div class="content">
                         <h3><i class="fa-solid fa-hospital-user fa-2xl" style="color: #537eea;"></i></h3>
                         <h3>Patient Portal</h3>
@@ -48,7 +49,7 @@
                 </a>
             </div>
             <div class="card">
-                <a href="chatbot.html">
+                <a href="{{ route('user.chatbot') }}">
                     <div class="content">
                         <h3><i class="fa-regular fa-comment fa-2xl" style="color: #537eea;"></i></h3>
                         <h3>Chatbot</h3>
@@ -70,20 +71,20 @@
                         </a>
                     </div>
                     <div class="card">
-                        <a href="nutrition.html">
+                        <a href="{{ route('user.weightManagement') }}">
                             <div class="content">
                                 <h3><i class="fa-brands fa-nutritionix fa-2xl" style="color: #537eea;"></i></h3>
-                                <h3>Food And Nutrition</h3>
-                                <p>We provide an online health system fit for every single person.</p>
+                                <h3>BMI Calculator</h3>
+                                <p>BMI is a gauge of your risk for diseases that can occur with more body fat.</p>
                             </div>
                         </a>
                     </div>
                     <div class="card">
-                        <a href="fitness.html">
+                    <a href="{{ route('user.heart-age') }}">
                             <div class="content">
-                                <h3><i class="fa-solid fa-dumbbell fa-2xl" style="color: #537eea;"></i></h3>
-                                <h3>Fitness And Exercise</h3>
-                                <p>HealthHub provides free full-length workout videos, workout routines, healthy recipes, and more.</p>
+                                <h3><i class="fa-solid fa-heart-pulse fa-2xl" style="color: #537eea;"></i></h3>
+                                <h3>Heart Age Test</h3>
+                                <p>One way to understand your risk for a heart attack or stroke is to learn your “heart age.” </p>
                             </div>
                         </a>
                     </div>
@@ -103,7 +104,7 @@
             </div>
 
         
-        <div class="articles">
+        <!-- <div class="articles">
             <h2>Related Resources For Up To Date</h2>
             <div class="row mb-5 cstm-height-card">
                 <div class="col-md-4">
@@ -138,7 +139,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     @include('user.footer')
