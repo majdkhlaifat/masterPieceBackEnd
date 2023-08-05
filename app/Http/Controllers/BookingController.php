@@ -7,13 +7,34 @@ use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\Appointment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Carbon;
 
 class BookingController extends Controller
 {
     public function create()
     {
+        if (!Auth::check()) {
+            // User is not logged in, show the error message and redirect back
+            $errorMessage = __('You have to be logged in to book your appointment');
+            Session::flash('error', $errorMessage);
+            return redirect()->back();
+        }
+
+        // User is logged in, continue with the booking process
         $doctors = Doctor::all();
-        return view('user.booking', compact('doctors'));
+
+        // Fetch booked dates and times for doctors from the database
+        $bookedDates = Appointment::where('date', '>=', now()->format('Y-m-d'))
+            ->pluck('date')
+            ->toArray();
+
+        $bookedTimes = Appointment::where('date', '>=', now()->format('Y-m-d'))
+            ->pluck('time')
+            ->toArray();
+
+        return view('user.booking', compact('doctors', 'bookedDates', 'bookedTimes'));
+
     }
 
     public function submit(Request $request)
@@ -41,7 +62,42 @@ class BookingController extends Controller
     if ($validator->fails()) {
         return redirect()->back()->withErrors($validator)->withInput();
     }
+    $selectedDate = $request->date;
+    $selectedTime = $request->time;
+    $selectedDoctor = $request->doctor;
 
+    // Check if the selected date is Friday, and if so, disallow booking
+    $selectedDateObj = Carbon::createFromFormat('Y-m-d', $selectedDate);
+    if ($selectedDateObj->isFriday()) {
+        return redirect()->back()->with('message', 'Booking is not available on Fridays.');
+    }
+
+    // Check if the selected time is within working hours (9 am to 6 pm)
+    $startTime = Carbon::createFromFormat('H:i', '09:00');
+    $endTime = Carbon::createFromFormat('H:i', '18:00');
+    $selectedTimeObj = Carbon::createFromFormat('H:i', $selectedTime);
+    if ($selectedTimeObj->lt($startTime) || $selectedTimeObj->gt($endTime)) {
+        return redirect()->back()->with('message', 'Booking is only available between 9 am and 6 pm.');
+    }
+
+    // Check if the selected date and time are available for booking
+    $existingAppointments = Appointment::where('doctor', $selectedDoctor)
+        ->where('date', $selectedDate)
+        ->where('time', $selectedTime)
+        ->get();
+
+    if ($existingAppointments->count() > 0) {
+        return redirect()->back()->with('message', 'The selected date and time are not available for booking with this doctor.');
+    }
+
+    // Check if the doctor already has an appointment on the selected date
+    $existingDoctorAppointments = Appointment::where('doctor', $selectedDoctor)
+        ->where('date', $selectedDate)
+        ->get();
+
+    if ($existingDoctorAppointments->count() > 0) {
+        return redirect()->back()->with('message', 'The selected doctor already has an appointment on the selected date.');
+    }
     $appointment = new Appointment;
     $appointment->name = $request->name;
     $appointment->email = $request->email;
@@ -156,4 +212,6 @@ class BookingController extends Controller
 
         return redirect()->back()->with('message', 'Appointment Request Successful. We will contact you soon.');
     }
+
+
 }

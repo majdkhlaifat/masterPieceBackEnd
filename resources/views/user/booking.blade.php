@@ -2,6 +2,8 @@
 
 <head>
     <link rel="stylesheet" href="{{ asset('../assets/css/booking.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
 </head>
 
 <div class="main">
@@ -9,12 +11,12 @@
     <div class="left">
         <h2>Book Your Appointment Now and Save Your Time</h2>
         <p>Choose your preferred date and time, and you will receive a confirmation message</p>
-        <p>For Help Call: +189-123-453</p> 
+        <p>For Help Call: +189-123-453</p>
     </div>
     <div class="right">
         <div class="bookingform">
-            <h1>Book Appointment</h1>
-            
+            <h1  style="margin-left: 120px;">Book Appointment</h1>
+
             @if(session()->has('message'))
                 <div class="alert alert-success alert-dismissible fade show" style="width: 50%;" role="alert">
                     {{ session()->get('message') }}
@@ -47,8 +49,8 @@
 
                 <label class="bookingLabel2" for="department">Department:</label>
                 <select id="department" name="doctor">
-                    <option value="">--Select A Doctor--</option> 
-                    @foreach($doctors as $doctor) 
+                    <option value="">--Select A Doctor--</option>
+                    @foreach($doctors as $doctor)
                         <option value="{{$doctor->name}}">{{$doctor->name}}, speciality {{$doctor->speciality}}</option>
                     @endforeach
                 </select>
@@ -76,40 +78,77 @@
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
 <script>
-    // Define unavailable dates and times
-    var unavailableDates = ['2023-07-05', '2023-07-10'];
-    var unavailableTimes = ['09:00', '12:30'];
+    var bookedDates = @json($bookedDates ?? []);
+    var bookedTimes = @json($bookedTimes ?? []);
+    var workingHoursStart = moment('09:00', 'HH:mm');
+    var workingHoursEnd = moment('18:00', 'HH:mm');
 
-    // Get date and time inputs
+    function isTimeWithinWorkingHours(time) {
+        return moment(time, 'HH:mm').isBetween(workingHoursStart, workingHoursEnd, null, '[]');
+    }
+
+    function isDateAvailable(date) {
+        return !bookedDates.includes(date);
+    }
+
+    function isTimeAvailable(time) {
+        return !bookedTimes.includes(time);
+    }
+
+    // Function to check if both date and time are available
+    function isDateTimeAvailable(date, time) {
+        return isDateAvailable(date) && isTimeAvailable(time) && isTimeWithinWorkingHours(time);
+    }
+
+    function updateDateTimeAvailability() {
+        var dateInput = document.getElementById('date');
+        var timeInput = document.getElementById('time');
+
+        for (var i = 0; i < bookedDates.length; i++) {
+            var bookedDate = bookedDates[i];
+            dateInput.querySelector(`[value="${bookedDate}"]`).disabled = true;
+        }
+
+        for (var i = 0; i < bookedTimes.length; i++) {
+            var bookedTime = bookedTimes[i];
+            timeInput.querySelector(`[value="${bookedTime}"]`).disabled = true;
+        }
+    }
+
+    function updateSubmitButtonStatus() {
+        var selectedDate = dateInput.value;
+        var selectedTime = timeInput.value;
+        var submitButton = document.getElementById('submitButton');
+
+        var isDateUnavailable = !isDateAvailable(selectedDate) || !isTimeWithinWorkingHours(selectedTime);
+        var isTimeUnavailable = !isTimeAvailable(selectedTime) || !isTimeWithinWorkingHours(selectedTime);
+
+        if (isDateTimeAvailable(selectedDate, selectedTime)) {
+            submitButton.disabled = false;
+        } else {
+            submitButton.disabled = true;
+        }
+    }
+
+    // Get the date and time input elements
     var dateInput = document.getElementById('date');
     var timeInput = document.getElementById('time');
-    var submitButton = document.getElementById('submitButton');
 
-    // Disable unavailable dates
+    // Disable booked dates and times on page load
+    updateDateTimeAvailability();
+
+    // Add event listeners to inputs
     dateInput.addEventListener('input', function() {
-        var selectedDate = this.value;
-        var isDateUnavailable = unavailableDates.includes(selectedDate);
-        if (isDateUnavailable) {
-            this.setCustomValidity('Please select an available date.');
-            submitButton.disabled = true;
-        } else {
-            this.setCustomValidity('');
-            submitButton.disabled = false;
-        }
+        updateDateTimeAvailability();
+        updateSubmitButtonStatus();
     });
 
-    // Disable unavailable times
     timeInput.addEventListener('input', function() {
-        var selectedTime = this.value;
-        var isTimeUnavailable = unavailableTimes.includes(selectedTime);
-        if (isTimeUnavailable) {
-            this.setCustomValidity('Please select an available time.');
-            submitButton.disabled = true;
-        } else {
-            this.setCustomValidity('');
-            submitButton.disabled = false;
-        }
+        updateDateTimeAvailability();
+        updateSubmitButtonStatus();
     });
+
+    // Call this on page load to disable any pre-filled values
+    updateSubmitButtonStatus();
 </script>

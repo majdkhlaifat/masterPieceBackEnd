@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\PatientNotice;
 use App\Models\User;
 
+
 class PatientController extends Controller
 {
     public function patientPortal()

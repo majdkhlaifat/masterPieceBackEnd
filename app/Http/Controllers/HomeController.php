@@ -16,7 +16,7 @@ class HomeController extends Controller
             if ($user->usertype == '0') {
                 return view('user.home');
             } elseif ($user->usertype == '1') {
-                return view('admin.addDoctor');
+                return view('admin.home');
             } elseif ($user->usertype == '2') {
                 return redirect()->route('doctor.home');
             }

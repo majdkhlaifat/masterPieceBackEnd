@@ -1,5 +1,3 @@
-<!-- telemedicine.blade.php -->
-
 @include('user.navbar')
 
 <div class="page-section" style="margin-top: 120px;">

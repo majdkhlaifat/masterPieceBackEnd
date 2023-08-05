@@ -30,7 +30,7 @@ Route::post('/upload_doctor', [AdminController::class, 'upload']);
 Route::get('/telemedicine', [AdminController::class, 'view'])->name('user.telemedicine');
 
 Route::any('/booking/create', [BookingController::class, 'create'])->name('user.booking.create');
-Route::post('/user/booking/submit', [BookingController::class,'submit'])->name('user.booking.submit');
+Route::any('/user/booking/submit', [BookingController::class,'submit'])->name('user.booking.submit');
 
 Route::get('/myAppointment', [BookingController::class,'myAppointment'])->name('user.my_appointment');
 Route::get('/cancel_appoint/{id}', [BookingController::class, 'cancel_appoint'])->name('cancel_appoint');
@@ -59,7 +59,7 @@ Route::post('/editDoctor/{id}', [AdminController::class, 'editDoctor'])->name('e
 Route::get('/doctor/patient-portal/{patient_id}', [DoctorController::class, 'patientPortal'])->name('doctor.patientPortal');
 
 Route::get('/calories-burned', [CaloriesBurnedController::class, 'getCaloriesBurned'])->name('user.calories-burned');
-Route::get('/countByUserType', [AdminController::class, 'countByUserType'])->name('admin.body');
+Route::get('/user-type-counts', [AdminController::class, 'getUserTypeCounts'])->name('admin.body');
 
 Route::get('/chatbot', [HomeController::class, 'chatbot'])->name('user.chatbot');
 

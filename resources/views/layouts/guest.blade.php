@@ -13,9 +13,14 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            .body {
+                background-color: transparent;
+            }
+        </style>
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
+        <div class="font-sans text-gray-900 antialiased customize">
             {{ $slot }}
         </div>
     </body>

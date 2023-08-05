@@ -1,24 +1,16 @@
-* {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-/* Color of the links BEFORE scroll */
+/* navbar.css */
 .navbar-scroll .nav-link,
 .navbar-scroll .navbar-toggler-icon,
 .navbar-scroll .navbar-brand {
     color: #252222;
 }
 
-/* Color of the links AFTER scroll */
 .navbar-scrolled .nav-link,
 .navbar-scrolled .navbar-toggler-icon,
 .navbar-scrolled .navbar-brand {
     color: #0a0a0a;
 }
 
-/* Color of the navbar AFTER scroll */
 .navbar-scroll,
 .navbar-scrolled {
     background-color: #cbbcb1;
@@ -39,7 +31,6 @@ nav {
     align-items: center;
     justify-content: space-between;
     background-color: #f4f4f4;
-    /* padding: 10px; */
     color: #fff;
     z-index: 999; /* Add higher z-index to navbar */
     margin-left: 0;
@@ -52,7 +43,7 @@ nav {
 }
 
 nav a img {
-    width: 100px; 
+    width: 100px;
     height: 80px;
     margin-right: 10px;
 }
@@ -78,3 +69,7 @@ nav div ul li a:hover {
     background-color: #333;
     color: white;
 }
+/*.text{*/
+/*    padding-left: 15px; !* Set your desired value for the left padding *!*/
+/*    padding-right: 15px; !* Set your desired value for the right padding *!*/
+/*}*/

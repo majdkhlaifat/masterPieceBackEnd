@@ -1,5 +1,11 @@
         @include('user.navbar')
         <!-- End Of Navbar -->
+
+        @if(session('error'))
+            <script>
+                alert('{{ session('error') }}');
+            </script>
+            @endif
     </div>
         <!-- background -->
         <div class="background"></div>
@@ -24,7 +30,7 @@
 
 
     </div>
-    <!-- services -->        
+    <!-- services -->
     </div>
     <div class="Services">
         <h2>Our Services</h2>
@@ -58,7 +64,7 @@
                 </a>
             </div>
         </div>
-        
+
             <div class="Services">
                 <div class="card-group">
                     <div class="card">
@@ -89,7 +95,7 @@
                         </a>
                     </div>
                 </div>
-                
+
             </div>
         <!-- appointement -->
             <div class="appointement">
@@ -98,12 +104,12 @@
                 </div>
                 <div class="enter">
                     <h3>Make an Appointment</h3>
-                    <div><a href="signUp.html">Sign Up </a> 
+                    <div><a href="signUp.html">Sign Up </a>
                         or <a href="login.html"> Log in </a> to make your appointment. </div>
                 </div>
             </div>
 
-        
+
         <!-- <div class="articles">
             <h2>Related Resources For Up To Date</h2>
             <div class="row mb-5 cstm-height-card">
@@ -155,9 +161,9 @@
     max: 25,
     speed: 400,
     glare: true,
-    "max-glare": 1,   
+    "max-glare": 1,
     });
     </script>
-    
+
 </body>
 </html>

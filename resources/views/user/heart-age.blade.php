@@ -1,18 +1,21 @@
-@include('user.navbar')
+<div class="nav">
+    @include('user.navbar')
+</div>
 <!DOCTYPE html>
-<html>
+<html lang="">
 <head>
   <title>Heart Age Calculator</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 0;
+      padding: 0;
     }
 
     h1 {
       text-align: center;
-      margin-top: 120px;
     }
 
     form {
@@ -42,7 +45,11 @@
       border: none;
       cursor: pointer;
     }
-
+    .nav{
+        margin: 0;
+        margin-top: 130px;
+        width: 100%;
+    }
     #result {
       text-align: center;
       margin-top: 20px;
@@ -59,6 +66,7 @@
   </style>
 </head>
 <body>
+
 
   <div class="container">
     <h1>Heart Age Calculator</h1>
@@ -104,8 +112,8 @@
     </div>
   </div>
 
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
     // Heart age calculation function
     function calculateHeartAge(event) {
       event.preventDefault();
@@ -147,5 +155,7 @@
     // Attach the form submission event listener
     document.getElementById('heartAgeForm').addEventListener('submit', calculateHeartAge);
   </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </body>
 </html>

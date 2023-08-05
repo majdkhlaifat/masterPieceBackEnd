@@ -13,7 +13,7 @@ class AdminController extends Controller
     {
         return view('admin.addDoctor');
     }
-   
+
     public function upload(Request $request)
 {
     $request->validate([
@@ -106,14 +106,23 @@ class AdminController extends Controller
     $data->save();
     return redirect()->back()->with('message', 'Doctor Information Updated Successfully');
 }
-public function countByUserType()
-{
-    $userTypeCounts = User::select('usertype', \DB::raw('COUNT(*) as count'))
-        ->groupBy('usertype')
-        ->pluck('count', 'usertype')
-        ->toArray();
+    public function getUserTypeCounts()
+    {
+        $userTypeCounts = User::select('usertype', \DB::raw('COUNT(*) as count'))
+            ->groupBy('usertype')
+            ->get()
+            ->keyBy('usertype')
+            ->map(function ($item) {
+                return $item->count;
+            });
 
-    return view('admin.body')->with('userTypeCounts', $userTypeCounts);
-}
+        $counts = [
+            'patients' => $userTypeCounts->get(0, 0),
+            'doctors' => $userTypeCounts->get(2, 0),
+            'admins' => $userTypeCounts->get(1, 0),
+        ];
+
+        return response()->json($counts);
+    }
 
 }

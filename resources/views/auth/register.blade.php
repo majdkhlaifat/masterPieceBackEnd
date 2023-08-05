@@ -1,6 +1,12 @@
 <x-guest-layout>
+    <style>
+        .customize{
+            color: #0250c5;
+            background-color: white;
+        }
+    </style>
     <div class="absolute top-0 left-0 mt-4 ml-4">
-        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="#" onclick="goBack(); return false;">
+        <a class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 customize" href="#" onclick="goBack(); return false;">
         {{ __('Return to Previous Page') }}
         </a>
   </div>
@@ -70,7 +76,7 @@
       </div>
     </form>
   </x-authentication-card>
-  
+
   <script>
     function goBack() {
       window.history.back();
