@@ -50,11 +50,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.weightManagement') }}">BMI Calculator</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('user.telemedicine')}}">Telemedicine Services</a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link" href="{{route('user.telemedicine')}}">Telemedicine Services</a>--}}
+{{--                        </li>--}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('user.heart-age')}}">Heart Age Test</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('user.medical-history')}}">Medical History</a>
                         </li>
                     @if (Route::has('login'))
                     @auth

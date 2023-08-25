@@ -79,4 +79,17 @@ class User extends Authenticatable
         return $this->hasMany(PatientNotice::class, 'patient_id');
     }
 
+    public function medicalHistories()
+    {
+        return $this->hasOne(MedicalHistory::class);
+    }
+    public function conversations()
+    {
+        return $this->belongsToMany(Conversation::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\User;
@@ -63,11 +64,7 @@ class AdminController extends Controller
         $doctors = Doctor::all();
         return view('user.telemedicine', compact('doctors'));
     }
-    // public function show()
-    // {
-    //     $doctors = Doctor::all();
-    //     return view('user.booking', compact('doctors'));
-    // }
+
     public function showDoctors()
     {
         $data = Doctor::all();
@@ -124,5 +121,25 @@ class AdminController extends Controller
 
         return response()->json($counts);
     }
+    public function getAppointmentStatusCounts()
+    {
+        // Fetch the counts for each appointment status from the database
+        $inProgressCount = Appointment::where('status', 'in progress')->count();
+        $approvedCount = Appointment::where('status', 'approved')->count();
+        $cancelledCount = Appointment::where('status', 'canceled')->count();
 
+        // Return the data as JSON
+        return response()->json([
+            'inProgressCount' => $inProgressCount,
+            'approvedCount' => $approvedCount,
+            'cancelledCount' => $cancelledCount,
+        ]);
+    }
+    public function showUsers()
+    {
+        $users = User::all();
+//        dd($users);
+        return view('admin.home', compact('users'));
+
+    }
 }

@@ -7,13 +7,11 @@
             background-position: center;
             background-repeat: no-repeat;
         }
-
-        /* Additional style for the content container */
         .container {
-            max-width: 100%; /* Adjust the max-width as needed */
-            margin: 0 auto; /* Center the container horizontally */
+            max-width: 100%;
+            margin: 0 auto;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .customizeReturn{
             color: #0250c5;

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-   
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/public">
     <style type="text/css">
   label {
@@ -85,7 +84,7 @@
   </head>
   <body>
     <div class="container-scroller">
-      
+
       <!-- partial:partials/_sidebar.html -->
       @include('admin.sidebar')
 
@@ -93,7 +92,7 @@
       @include('admin.navbar')
 
       <!-- partial -->
- 
+
       <div class="container main-container">
       <form action="{{ route('editDoctor', ['id' => $data->id]) }}" method="POST" enctype="multipart/form-data">
       @if(session()->has('message'))
@@ -148,7 +147,7 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     @include('admin.script')
-    
+
     <!-- End custom js for this page -->
   </body>
 </html>

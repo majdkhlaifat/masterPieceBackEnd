@@ -1,9 +1,9 @@
 @include('user.navbar')
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('../assets/css/booking.css') }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 <div class="main">
@@ -18,13 +18,12 @@
             <h1  style="margin-left: 120px;">Book Appointment</h1>
 
             @if(session()->has('message'))
-                <div class="alert alert-success alert-dismissible fade show" style="width: 50%;" role="alert">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session()->get('message') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+
 
             <form action="{{ route('user.booking.submit') }}" method="POST" class="bookingForm">
                 @csrf
@@ -47,7 +46,7 @@
                     <span class="error">{{ $message }}</span>
                 @enderror
 
-                <label class="bookingLabel2" for="department">Department:</label>
+                <label class="bookingLabel1" for="department">Doctor:</label>
                 <select id="department" name="doctor">
                     <option value="">--Select A Doctor--</option>
                     @foreach($doctors as $doctor)
@@ -64,11 +63,12 @@
                     <span class="error">{{ $message }}</span>
                 @enderror
 
-                <label class="bookingLabel2" for="time">Preferred Time:</label>
-                <input type="time" id="time" name="time" value="{{ old('time') }}" required>
-                @error('time')
-                    <span class="error">{{ $message }}</span>
-                @enderror
+                <select id="time" name="time" required>
+                    <option value="">-- Select Time --</option>
+                    @foreach($availableTimeSlots as $timeSlot)
+                        <option value="{{ $timeSlot }}">{{ $timeSlot }}</option>
+                    @endforeach
+                </select>
 
                 <label class="bookingLabel3" for="message">Additional Message:</label><br>
                 <textarea id="message" name="message" rows="4" cols="50" placeholder="Enter your message here">{{ old('message') }}</textarea>
@@ -78,77 +78,48 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-UYjXU0FFhAEqby0PXv22NEx+TkmMmA/Vw9RnMz3kFS85vC1NnDHM+22d5HFaVRVl" crossorigin="anonymous"></script>--}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
 <script>
-    var bookedDates = @json($bookedDates ?? []);
-    var bookedTimes = @json($bookedTimes ?? []);
-    var workingHoursStart = moment('09:00', 'HH:mm');
-    var workingHoursEnd = moment('18:00', 'HH:mm');
-
-    function isTimeWithinWorkingHours(time) {
-        return moment(time, 'HH:mm').isBetween(workingHoursStart, workingHoursEnd, null, '[]');
-    }
-
-    function isDateAvailable(date) {
-        return !bookedDates.includes(date);
-    }
-
-    function isTimeAvailable(time) {
-        return !bookedTimes.includes(time);
-    }
-
-    // Function to check if both date and time are available
-    function isDateTimeAvailable(date, time) {
-        return isDateAvailable(date) && isTimeAvailable(time) && isTimeWithinWorkingHours(time);
-    }
-
     function updateDateTimeAvailability() {
         var dateInput = document.getElementById('date');
         var timeInput = document.getElementById('time');
+        var doctorSelect = document.getElementById('department'); // Add the ID of the doctor select element
 
-        for (var i = 0; i < bookedDates.length; i++) {
-            var bookedDate = bookedDates[i];
-            dateInput.querySelector(`[value="${bookedDate}"]`).disabled = true;
-        }
-
-        for (var i = 0; i < bookedTimes.length; i++) {
-            var bookedTime = bookedTimes[i];
-            timeInput.querySelector(`[value="${bookedTime}"]`).disabled = true;
-        }
-    }
-
-    function updateSubmitButtonStatus() {
         var selectedDate = dateInput.value;
-        var selectedTime = timeInput.value;
-        var submitButton = document.getElementById('submitButton');
+        var selectedDoctor = doctorSelect.value; // Get the selected doctor
 
-        var isDateUnavailable = !isDateAvailable(selectedDate) || !isTimeWithinWorkingHours(selectedTime);
-        var isTimeUnavailable = !isTimeAvailable(selectedTime) || !isTimeWithinWorkingHours(selectedTime);
+        // Fetch booked times for the selected doctor and date using AJAX
+        $.ajax({
+            url: "{{ route('fetch.booked.times') }}", // Create a new route for fetching booked times
+            method: "GET",
+            data: {
+                doctor: selectedDoctor,
+                date: selectedDate
+            },
+            success: function(response) {
+                var bookedTimes = response.bookedTimes;
+                console.log('Booked times:', bookedTimes); // Check the logged booked times
 
-        if (isDateTimeAvailable(selectedDate, selectedTime)) {
-            submitButton.disabled = false;
-        } else {
-            submitButton.disabled = true;
-        }
+                // Loop through available time options and disable booked times
+                for (var i = 0; i < timeInput.options.length; i++) {
+                    var timeOption = timeInput.options[i].value;
+                    if (bookedTimes.includes(timeOption)) {
+                        timeInput.options[i].disabled = true;
+                    } else {
+                        timeInput.options[i].disabled = false;
+                    }
+                }
+
+                // Call the function to update the submit button status
+                updateSubmitButtonStatus();
+            },
+            error: function() {
+                console.error("Error fetching booked times.");
+            }
+        });
     }
 
-    // Get the date and time input elements
-    var dateInput = document.getElementById('date');
-    var timeInput = document.getElementById('time');
-
-    // Disable booked dates and times on page load
-    updateDateTimeAvailability();
-
-    // Add event listeners to inputs
-    dateInput.addEventListener('input', function() {
-        updateDateTimeAvailability();
-        updateSubmitButtonStatus();
-    });
-
-    timeInput.addEventListener('input', function() {
-        updateDateTimeAvailability();
-        updateSubmitButtonStatus();
-    });
-
-    // Call this on page load to disable any pre-filled values
-    updateSubmitButtonStatus();
 </script>

@@ -4,6 +4,7 @@
 <head>
     <title>Medical Report</title>
     <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,11 +39,11 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-md-6">
             <h3>Patient Information</h3>
             <p><strong>Name:</strong> {{ $patient->name }}</p>
-            <p><strong>Date of Birth:</strong> [Patient Date of Birth]</p>
+            <p><strong>Date of Birth:</strong>  {{ $medicalHistory->dob }}</p>
             <p><strong>Email:</strong> {{ $patient->email }}</p>
 
         </div>
@@ -56,15 +57,49 @@
     </div>
 
 
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-md-12">
-            <h3>Medical History</h3>
-            <p>[Medical History Details]</p>
-            <hr>
+            <h3 class="mb-3">Medical History</h3>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th class="col-md-4">Medical Condition</th>
+                    <th>History</th>
+                </tr>
+                <tr>
+                    <td>Have Diabetes Mellitus</td>
+                    <td>{{ $medicalHistory->diabetes }}</td>
+                </tr>
+                <tr>
+                    <td>Have Hypertension</td>
+                    <td>{{ $medicalHistory->hypertension }}</td>
+                </tr>
+                <tr>
+                    <td>Have Heart Disease</td>
+                    <td>{{ $medicalHistory->heart_disease }}</td>
+                </tr>
+                <tr>
+                    <td>Smoker</td>
+                    <td>{{ $medicalHistory->smoking }}</td>
+                </tr>
+                <tr>
+                    <td>Blood Type</td>
+                    <td>{{ $medicalHistory->blood_type }}</td>
+                </tr>
+                <tr>
+                    <td>History Of Allergies</td>
+                    <td>{{ $medicalHistory->allergies }}</td>
+                </tr>
+                <tr>
+                    <td>Any Relevant Medical History Or Comments</td>
+                    <td>{{ $medicalHistory->comments }}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-md-12">
             <h3>Doctor's Notes</h3>
             <form action="{{ route('addNotice') }}" method="POST">
@@ -76,14 +111,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Add Notes</button>
             </form>
-            <hr>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <h3>Additional Information</h3>
-            <p>[Additional information can be included here, such as follow-up appointments, referrals, etc.]</p>
             <hr>
         </div>
     </div>

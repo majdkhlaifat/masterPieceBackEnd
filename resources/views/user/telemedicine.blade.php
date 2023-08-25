@@ -11,15 +11,16 @@
 
         <div class="row">
             @foreach($doctors as $doctor)
-            <div class="col-md-4">
-                <div class="card" style="width: 350px; margin: 10px; margin-bottom:30px;">
-                    <img src="{{ asset('doctorimage/' . $doctor->image) }}" class="card-img-top" alt="{{ $doctor->name }} picture" style="width: 100%; height: 250px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Dr.{{ $doctor->name }}, {{ $doctor->speciality }}</h5>
-                        <a href="#" class="btn btn-primary" onclick="showContactModal('{{ $doctor->name }}', '{{ $doctor->email }}', '{{ $doctor->phone }}','{{ $doctor->speciality }}')">Doctor Information</a>
+                <div class="col-md-4">
+                    <div class="card" style="width: 350px; margin: 10px; margin-bottom:30px;">
+                        <img src="{{ asset('doctorimage/' . $doctor->image) }}" class="card-img-top" alt="{{ $doctor->name }} picture" style="width: 100%; height: 250px;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Dr.{{ $doctor->name }}, {{ $doctor->speciality }}</h5>
+                            <a href="#" class="btn btn-primary" onclick="showContactModal('{{ $doctor->name }}', '{{ $doctor->email }}', '{{ $doctor->phone }}','{{ $doctor->speciality }}')">Doctor Information</a>
+                            <a href="{{ route('user.livechat', ['doctor' => $doctor->user->id]) }}" class="btn btn-primary">Go Chat Now</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
     </div>

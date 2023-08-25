@@ -6,7 +6,6 @@
                 alert('{{ session('error') }}');
             </script>
             @endif
-    </div>
         <!-- background -->
         <div class="background"></div>
         <div class="main">

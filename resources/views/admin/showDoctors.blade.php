@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     .large-row {
-        height: 100px; 
+        height: 100px;
     }
     label {
             display: inline-block;
@@ -40,7 +40,7 @@
   </head>
   <body>
     <div class="container-scroller">
-      
+
       <!-- partial:partials/_sidebar.html -->
       @include('admin.sidebar')
 
@@ -48,7 +48,7 @@
       @include('admin.navbar')
 
       <!-- partial -->
- 
+
        <div class="container-fluid page-body-wrapper">
        <!-- @if(session('success'))
             <div class="alert alert-success">
@@ -69,7 +69,7 @@
         <tr class="large-row">
             <td>{{$doctor->name}}</td>
             <td>{{$doctor->phone}}</td>
-            <td>{{$doctor->speciality}}</td>   
+            <td>{{$doctor->speciality}}</td>
             <td>{{$doctor->room}}</td>
             <td><img src="doctorimage/{{$doctor->image}}" style="width: 100px; height: 100px;" class="large-image"></td>
             <td>
@@ -80,12 +80,12 @@
         @endforeach
     </table>
 
-        </div> 
+        </div>
 
     <!-- container-scroller -->
     <!-- plugins:js -->
     @include('admin.script')
-    
+
     <!-- End custom js for this page -->
   </body>
 </html>
