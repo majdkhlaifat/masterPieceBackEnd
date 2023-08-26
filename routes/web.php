@@ -82,13 +82,3 @@ Route::any('/store-medical-history', [DoctorController::class, 'storeMedicalHist
 Route::post('/send-message', [MessagesController::class,'sendMessage'])->name('send-message');
 Route::get('/livechat/{doctor}', [HomeController::class, 'livechat'])->name('user.livechat');
 
-//Route::get('/livechat', function () {
-//    return view('user.livechat');
-//})->name('livechat');
-//Route::middleware([
-//    'auth:sanctum',
-//    config('jetstream.auth_session'),
-//    'verified'
-//])->group(function () {
-//    Route::get('/admin/dashboard', [AdminController::class, 'showUsers'])->name('admin.body');
-//});

@@ -2,7 +2,7 @@
 
 <div align="center" style="padding: 70px; margin-top: 70px;">
     @if(count($appoints) === 0)
-        <p>No appointments available at the moment.</p>
+        <p>No appointments booked at the moment.</p>
     @else
         <table class="table">
             <tr>

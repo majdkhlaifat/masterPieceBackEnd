@@ -9,17 +9,10 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <!-- Website Logo -->
         <a class="navbar-brand" href="{{route('doctor.home')}}">
             <img src="{{ asset('assets/imgs/LogoMakr-0qlole.png') }}" alt="HealthHub Logo" width="70" height="70">
         </a>
 
-        <!-- Navbar Links -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <!-- Add other navbar links or buttons as needed -->
-            </ul>
-        </div>
         @if (Route::has('login'))
             @auth
                 <x-app-layout>
@@ -32,6 +25,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></head>
 
 <div class="container mt-5">
+    @if ($medicalHistory)
+
     <div class="row">
         <div class="col-md-12">
             <h1 class="text-center">Medical Report</h1>
@@ -55,7 +50,6 @@
 
         </div>
     </div>
-
 
     <div class="row mb-5">
         <div class="col-md-12">
@@ -98,6 +92,9 @@
             </table>
         </div>
     </div>
+    @else
+        <p>No medical history available.</p>
+    @endif
 
     <div class="row mb-5">
         <div class="col-md-12">

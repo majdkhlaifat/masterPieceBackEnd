@@ -21,7 +21,6 @@ class BookingController extends Controller
             Session::flash('error', $errorMessage);
             return redirect()->back();
         }
-        // User is logged in, continue with the booking process
         $doctors = Doctor::all();
         // Fetch booked appointments for the selected doctor and date
         $bookedAppointments = Appointment::where('doctor', $request->doctor)
@@ -41,7 +40,7 @@ class BookingController extends Controller
             if (!in_array($timeSlot, $bookedAppointments)) {
                 $availableTimeSlots[] = $timeSlot;
             }
-            $currentTime->addMinutes(30); // Adjust as needed
+            $currentTime->addMinutes(30);
         }
 
         return view('user.booking', compact('doctors', 'availableTimeSlots'));
@@ -134,53 +133,6 @@ class BookingController extends Controller
         $data->save();
 
         return redirect()->back();
-    }
-    public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'department' => 'required',
-            'date' => 'required',
-            'time' => 'required|unique:appointments,time,NULL,id,date,' . $request->input('date'),
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $data = new Appointment;
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->phone = $request->phone;
-        $data->doctor = $request->doctor;
-        $data->date = $request->date;
-        $data->time = $request->time;
-        $data->message = $request->message;
-        $data->status = 'In progress';
-        if (Auth::id()) {
-            $data->user_id = Auth::user()->id;
-        }
-        $data->save();
-
-        return redirect()->back()->with('message', 'Appointment Request Successful. We will contact you soon.');
-    }
-
-    public function fetchBookedTimes(Request $request)
-    {
-        // Validate input
-        $request->validate([
-            'doctor' => 'required|string',
-            'date' => 'required|date',
-        ]);
-
-        $bookedTimes = Appointment::where('doctor', $request->doctor)
-            ->where('date', $request->date)
-            ->pluck('time')
-            ->toArray();
-
-        return response()->json(['bookedTimes' => $bookedTimes]);
     }
 
 }

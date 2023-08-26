@@ -38,9 +38,20 @@ class DoctorController extends Controller
             'comments' => 'nullable|string',
         ]);
 
+        // Check if the user's medical history has been submitted before
+        if ($user->medicalHistories()->where('medical_history_submitted', true)->exists()) {
+            return redirect()->route('user.medical-history')->with('error', 'Medical history has already been submitted.');
+        }
+
         // Create a new medical history record using Eloquent
         $medicalHistory = new MedicalHistory($validatedData);
         $user->medicalHistories()->save($medicalHistory);
-        return redirect()->route('user.medical-history')->with('success', 'Medical history recorded successfully.');
+
+        // Update the medical_history_submitted column for the user's medical history
+        $user->medicalHistories()->update(['medical_history_submitted' => true]);
+
+        return redirect()->route('user.medical-history')->with('success', 'Medical history recorded and submitted successfully.');
     }
+
+
 }

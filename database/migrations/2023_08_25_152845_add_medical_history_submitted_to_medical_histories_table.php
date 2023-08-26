@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('conversations', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
+        Schema::table('medical_histories', function (Blueprint $table) {
+            $table->boolean('medical_history_submitted')->default(false);
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('conversations');
+        Schema::table('medical_histories', function (Blueprint $table) {
+            $table->dropColumn('medical_history_submitted');
+        });
     }
 };

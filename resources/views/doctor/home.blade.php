@@ -28,12 +28,6 @@
             <img src="{{ asset('assets/imgs/LogoMakr-0qlole.png') }}" alt="HealthHub Logo" width="70" height="70">
         </a>
 
-        <!-- Navbar Links -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <!-- Add other navbar links or buttons as needed -->
-            </ul>
-        </div>
         @if (Route::has('login'))
             @auth
                 <x-app-layout>

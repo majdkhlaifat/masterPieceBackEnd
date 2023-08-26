@@ -42,7 +42,6 @@
         }
 
         .user-bubble {
-            /*background: linear-gradient(to bottom right,  rgb(90,144,225), rgba(0, 0, 0, 0.05));*/
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 5px;
@@ -51,7 +50,7 @@
         }
 
         .bot-bubble {
-                background-color: #9DCCFB;
+                background-color: #66b2fd;
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 35px;

@@ -12,6 +12,11 @@
 <body>
 <div class="container mt-5">
     <h1 class="mb-4">Patient Medical History</h1>
+    @if ($user->medicalHistories()->where('medical_history_submitted', true)->exists())
+        <div class="alert alert-warning">
+            You have already submitted your medical history.
+        </div>
+    @else
     <form method="post" action="{{ route('store.medical-history')}}">
         @csrf
         @if(session('success'))
@@ -105,6 +110,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    @endif
     </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 

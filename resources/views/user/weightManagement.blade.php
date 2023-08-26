@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-image: url(https://www.pfanner.com/fileadmin/_processed_/2/d/csm_pfanner-getraenke-fruchtsaft-kalorien_a98efbe205.jpg);
+      background-image: url(https://www.progressivemedicalcenter.com/wp-content/uploads/2022/07/AdobeStock_133216465-1800x1197.jpeg);
       background-size: cover;
     }
 

@@ -32,12 +32,6 @@
     outline: none;
     box-shadow: none;
   }
-
-  .custom-btn {
-    background-color: green;
-  }
-
-  /* Updated CSS */
   input.form-control,
   select.form-control {
     background-color: white;
@@ -57,15 +51,6 @@
     width: 100%;
   }
 
-  .custom-file-input {
-    width: 100%;
-  }
-
-  .custom-file-input:focus {
-    outline: none;
-    box-shadow: 0 0 0 0.2rem green !important;
-  }
-
   .main-container {
     margin-top: 150px;
   }
@@ -76,9 +61,7 @@
     height: 300px;
     object-fit: cover;
   }
-  .updateDoc{
-    background-color: rgb(0,144,231);
-  }
+
 </style>
     @include('admin.css')
   </head>

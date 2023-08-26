@@ -20,7 +20,6 @@ class Appointment extends Model
         'user_id',
     ];
 
-    // Define any relationships here, if applicable
     public function user()
     {
         return $this->belongsTo(User::class);

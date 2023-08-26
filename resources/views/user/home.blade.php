@@ -9,7 +9,8 @@
         <!-- background -->
         <div class="background"></div>
         <div class="main">
-            <h1><div>We are providing best and afordable <span>health care</span></div></h1>
+
+            <h1><div>We are providing best and affordable <span>health care</span></div></h1>
             <div class="links">
                 <a href="{{ route('register') }}"><button type="button">Sign UP </button></a> or
                 <a href="{{ route('login') }}"><button type="button">Login </button></a>
@@ -108,43 +109,6 @@
                 </div>
             </div>
 
-
-        <!-- <div class="articles">
-            <h2>Related Resources For Up To Date</h2>
-            <div class="row mb-5 cstm-height-card">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://d2j2phkbg9avbb.cloudfront.net/blog/wp-content/uploads/2022/07/Blog-Image-4x3_22July22_1c.jpg" class="card-img-top" alt="mental health">
-                        <div class="card-body">
-                            <h5 class="card-title">Mental Health</h5>
-                            <p class="card-text">Discover New Clinical Trials Involving Psychedelic Compounds.Find information and support for your mental health.</p>
-                            <a href="#" class="btn btn-sm btn-primary">Read more</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://img.etimg.com/thumb/msid-74285145,width-650,imgsize-1203239,,resizemode-4,quality-100/istock-692546794.jpg" class="card-img-top" alt="diet">
-                        <div class="card-body">
-                            <h5 class="card-title">Diet and Weight Management</h5>
-                            <p class="card-text">Achieving and maintaining a healthy weight includes healthy eating, physical activity, optimal sleep, and stress reduction.</p>
-                            <a href="#" class="btn btn-sm btn-primary">Read more</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://static.toiimg.com/thumb/msid-76566104,width-1280,resizemode-4/76566104.jpg" class="card-img-top" alt="fitness">
-                        <div class="card-body">
-                            <h5 class="card-title">Fitness and Exercise</h5>
-                            <p class="card-text">Fitness and exercise are important for your health. Learn how to develop a fitness program that will work for you.
-                            </p>
-                            <a href="#" class="btn btn-sm btn-primary">Read more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
 
     @include('user.footer')
